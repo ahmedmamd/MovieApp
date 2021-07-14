@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.core.Observable
 
 class HomeRepository {
     var apiInterface: ApiInterface? = null
-    val API_KEY = "9c02c9ddb0ce19bf0dabd869597c0aaf"
+    val API_KEY = ""
     val PAGE = 1
     val LANGUAGE = "en-US"
 

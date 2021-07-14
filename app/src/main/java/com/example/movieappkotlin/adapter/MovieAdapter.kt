@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieappkotlin.R
 import com.example.movieappkotlin.pojo.Myresponse
+import com.example.movieappkotlin.pojo.ResultItem
 import kotlin.math.log
 
 class MovieAdapter (
-        var movie:ArrayList<Myresponse?>,
+        var movie:ArrayList<ResultItem?>,
         val context: Context,
         ): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -29,16 +30,17 @@ class MovieAdapter (
              averageRank = itemView.findViewById(R.id.vote_average)
              imagemovie = itemView.findViewById(R.id.imageBoaster)
          }
-
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
             return MovieViewHolder(LayoutInflater.from(context).inflate(R.layout.item_movie,parent,false))
     }
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.title.text = movie[position]!!.results.get(position).title
-        holder.overview.text = movie[position]!!.results.get(position).overview
-        holder.averageRank.text = movie[position]!!.results.get(position).vote_average.toString()
-        Glide.with(context).load(movie[position]?.results?.get(position)?.poster_path).into(holder.imagemovie)
+
+        holder.title.text = movie[position]?.title
+        holder.overview.text = movie[position]?.overview
+        holder.averageRank.text = movie[position]?.vote_average.toString()
+        Glide.with(context).load("https://image.tmdb.org/t/p/original"+movie[position]?.poster_path).into(holder.imagemovie)
+
     }
     override fun getItemCount(): Int {
         return movie.size

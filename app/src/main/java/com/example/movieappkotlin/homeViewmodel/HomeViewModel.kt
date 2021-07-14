@@ -38,10 +38,11 @@ class HomeViewModel : ViewModel() {
                 override fun onSubscribe(d: @NonNull Disposable?) {}
                 override fun onNext(myResponse: @NonNull Myresponse?) {
                     popularMutableLiveData.setValue(myResponse)
-                    Log.e("getPopularMovie", "onResponse: " + myResponse!!.results.size)
-                    Log.e("getPopularMovie", "onResponse: " + myResponse!!.results.get(2).title)
-                    Log.e("getPopularMovie", "onResponse: " + myResponse?.results.get(3).vote_average)
-                    Log.e("getPopularMovie", "onResponse: " + myResponse?.results.get(3).backdrop_path)
+
+                     Log.e("getPopularMovie", "onResponse: " + myResponse!!.page)
+                     Log.e("getPopularMovie", "onResponse: " + myResponse!!.total_pages)
+                     Log.e("getPopularMovie", "onResponse: " + myResponse?.total_results)
+                     Log.e("getPopularMovie", "onResponse: " + myResponse?.results)
                 }
                 override fun onError(e: @NonNull Throwable?) {
                     Log.e("getPopularMovie", "onError: " + e?.message)

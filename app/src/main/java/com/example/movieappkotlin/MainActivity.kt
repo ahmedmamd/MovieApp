@@ -13,11 +13,12 @@ import com.example.movieappkotlin.adapter.MovieAdapter
 import com.example.movieappkotlin.databinding.ActivityMainBinding
 import com.example.movieappkotlin.homeViewmodel.HomeViewModel
 import com.example.movieappkotlin.pojo.Myresponse
+import com.example.movieappkotlin.pojo.ResultItem
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
-    var movieList = ArrayList<Myresponse?>()
+    var movieList = ArrayList<ResultItem?>()
     var adapter = MovieAdapter(movieList , this)
     var homeViewModel:HomeViewModel?=null
 
@@ -34,17 +35,11 @@ class MainActivity : AppCompatActivity() {
         homeViewModel!!.getPopularMovie(this)
          binding.recMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
          binding.recMovie.adapter = adapter
-
-
     }
     private fun setUPObserver() {
         homeViewModel!!.popularLiveData()!!.observe(this, Observer<Myresponse?> { response ->
-            movieList.addAll(listOf(response))
+            movieList.addAll(response.results)
             adapter.notifyDataSetChanged()
-              Log.e("onChanged","onCreate: "+movieList.get(0)?.results?.get(10)?.title)
-//            Log.e("onChanged", "onCreate: "+response.results.get(1).title)
-//            Log.e("onChanged", "onCreate: "+response.results.get(2).title)
-//            Log.e("onChanged", "onCreate: "+response.results.get(3).title)
         })
     }
 }
